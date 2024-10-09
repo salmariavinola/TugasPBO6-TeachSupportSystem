@@ -1,0 +1,58 @@
+import java.util.HashMap;
+import java.util.Random;
+
+public class Responder
+{
+    private HashMap<String, String> responseMap;
+    private Random randomGenerator;
+
+    /**
+     * Construct a Responder - set up predefined responses.
+     */
+    public Responder()
+    {
+        responseMap = new HashMap<>();
+        randomGenerator = new Random();
+
+        // Add predefined responses based on keywords
+        responseMap.put("internet", "Please check your internet connection.");
+        responseMap.put("printer", "Make sure your printer is connected and has enough paper.");
+        responseMap.put("slow", "Try restarting your device to improve performance.");
+        responseMap.put("error", "Could you describe the error in more detail?");
+    }
+
+    /**
+     * Generate a response based on the user's input.
+     * @param input The user's input as a String.
+     * @return A string response.
+     */
+    public String generateResponse(String input)
+    {
+        for (String key : responseMap.keySet()) {
+            if (input.contains(key)) {
+                return responseMap.get(key);
+            }
+        }
+
+        // If no keyword matches, return a random response
+        return getRandomResponse();
+    }
+
+    /**
+     * Generate a random response if no keywords match.
+     * @return A random string response.
+     */
+    private String getRandomResponse()
+    {
+        String[] randomResponses = {
+            "That sounds interesting. Tell me more...",
+            "Hmm, I need more information to assist you.",
+            "Please check your device and try again.",
+            "Try restarting the application and see if that helps.",
+            "Is there any other error message showing?"
+        };
+
+        int index = randomGenerator.nextInt(randomResponses.length);
+        return randomResponses[index];
+    }
+}
