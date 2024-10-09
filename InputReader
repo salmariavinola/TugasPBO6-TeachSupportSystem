@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class InputReader
+{
+    private Scanner scanner;
+
+    /**
+     * Create a new InputReader that reads text from the terminal.
+     */
+    public InputReader()
+    {
+        scanner = new Scanner(System.in);
+    }
+
+    /**
+     * Read a line of input from the user.
+     * @return A string of user input.
+     */
+    public String getInput()
+    {
+        System.out.print("> ");  // Display a prompt for input
+        return scanner.nextLine();  // Read the user's input
+    }
+}
